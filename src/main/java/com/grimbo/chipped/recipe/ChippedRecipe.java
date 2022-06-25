@@ -18,7 +18,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistryEntry;
+//import net.minecraftforge.registries.ForgeRegistryEntry;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -120,7 +120,7 @@ public class ChippedRecipe implements Recipe<Container> {
 		return serializer.getType();
 	}
 
-	public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ChippedRecipe> {
+	public static class Serializer implements RecipeSerializer<ChippedRecipe> {
 		private final RecipeType<?> type;
 		private final Block icon;
 
