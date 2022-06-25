@@ -15,6 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 //import net.minecraft.tags.Tag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ForgeRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
@@ -30,7 +32,7 @@ public class ChippedRecipeCategory implements IRecipeCategory<ChippedRecipeCateg
 	private final IDrawable icon;
 
 	public ChippedRecipeCategory(Item item, IGuiHelper guiHelper) {
-		UID = item.getRegistryName();
+		UID = ForgeRegistries.ITEMS.getKey(item);
 		localizedName = I18n.get("container.chipped." + UID.getPath());
 		background = guiHelper.createDrawable(TEXTURE, 0, 220, 82, 34);
 		icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM, item.getDefaultInstance());

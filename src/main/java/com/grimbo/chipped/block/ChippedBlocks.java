@@ -215,7 +215,7 @@ public class ChippedBlocks {
                 }
             });
             BlockRegistry.addBlock(BenchType.BOTANIST, LILY_PAD, lilyPad);
-            ChippedItems.ITEMS.register(name, () -> new WaterLilyBlockItem(lilyPad.get(), new Item.Properties().tab(Chipped.CHIPPED)));
+            ChippedItems.ITEMS.register(name, () -> new PlaceOnWaterBlockItem(lilyPad.get(), new Item.Properties().tab(Chipped.CHIPPED)));
         }
 
         // TODO please, whoever put these here, rename them - Ashley
