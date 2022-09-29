@@ -12,6 +12,7 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.core.Direction;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,6 +22,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
+import net.minecraftforge.fml.DistExecutor;
 
 import net.minecraft.client.Minecraft;
 import java.util.function.Predicate;
@@ -43,9 +45,9 @@ public class Chipped {
 		ChippedRecipeTypes.RECIPE_TYPES.register(eventBus);
 		ChippedSerializer.SERIALIZER.register(eventBus);
 		ChippedContainerType.CONTAINER.register(eventBus);
-		eventBus.addListener(this::clientRender);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->  eventBus.addListener(this::clientRender));
 		eventBus.addListener(this::onClientSetupEvent);
-		MinecraftForge.EVENT_BUS.register(this);
+		DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () ->  MinecraftForge.EVENT_BUS.register(this));
 	}
 
 	@SubscribeEvent
