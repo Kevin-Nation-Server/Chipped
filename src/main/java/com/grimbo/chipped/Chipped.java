@@ -24,9 +24,6 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 import net.minecraftforge.fml.DistExecutor;
 
-import net.minecraft.client.Minecraft;
-import java.util.function.Predicate;
-
 @Mod(Chipped.MOD_ID)
 public class Chipped {
 	public static final String MOD_ID = "chipped";
@@ -60,98 +57,94 @@ public class Chipped {
 
 	@SubscribeEvent
 	public void clientRender(final FMLClientSetupEvent event) {
-
-		Predicate<RenderType> transparentRenderType = renderType -> Minecraft.useFancyGraphics() ? renderType == RenderType.translucent() : renderType == RenderType.solid();
-		Predicate<RenderType> cutoutRenderType = renderType -> Minecraft.useFancyGraphics() ? renderType == RenderType.cutoutMipped() : renderType == RenderType.solid();
-
-		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.BOTANIST_WORKBENCH.get(), transparentRenderType);
-		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.LOOM_TABLE.get(), transparentRenderType);
-		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.ALCHEMY_BENCH.get(), transparentRenderType);
-		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.MECHANIST_WORKBENCH.get(), transparentRenderType);
-		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.CARPENTERS_TABLE.get(), transparentRenderType);
-		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.GLASSBLOWER.get(), transparentRenderType);
+		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.BOTANIST_WORKBENCH.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.LOOM_TABLE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.ALCHEMY_BENCH.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.MECHANIST_WORKBENCH.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.CARPENTERS_TABLE.get(), RenderType.translucent());
+		ItemBlockRenderTypes.setRenderLayer(ChippedBlocks.GLASSBLOWER.get(), RenderType.translucent());
 
 		for (RegistryObject<GlassBlock> glass : ChippedBlockTypes.GLASSES) {
-			ItemBlockRenderTypes.setRenderLayer(glass.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(glass.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<IronBarsBlock> glassPane : ChippedBlockTypes.GLASS_PANES) {
-			ItemBlockRenderTypes.setRenderLayer(glassPane.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(glassPane.get(), RenderType.cutout());
 		}
 
 		for (int id = 0; id < 16; id++) {
 			DyeColor color = DyeColor.byId(id);
 			for (RegistryObject<StainedGlassBlock> stainedGlass : ChippedBlockTypes.STAINED_GLASSES.get(color)) {
-				ItemBlockRenderTypes.setRenderLayer(stainedGlass.get(), transparentRenderType);
+				ItemBlockRenderTypes.setRenderLayer(stainedGlass.get(), RenderType.translucent());
 			}
 
 			for (RegistryObject<StainedGlassPaneBlock> stainedGlassPane : ChippedBlockTypes.STAINED_GLASS_PANES.get(color)) {
-				ItemBlockRenderTypes.setRenderLayer(stainedGlassPane.get(), transparentRenderType);
+				ItemBlockRenderTypes.setRenderLayer(stainedGlassPane.get(), RenderType.translucent());
 			}
 		}
 
 		for (RegistryObject<VineBlock> vine : ChippedBlockTypes.VINES) {
-			ItemBlockRenderTypes.setRenderLayer(vine.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(vine.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<MushroomBlock> brown_mushroom : ChippedBlockTypes.BROWN_MUSHROOMS) {
-			ItemBlockRenderTypes.setRenderLayer(brown_mushroom.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(brown_mushroom.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<MushroomBlock> red_mushroom : ChippedBlockTypes.RED_MUSHROOMS) {
-			ItemBlockRenderTypes.setRenderLayer(red_mushroom.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(red_mushroom.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<MushroomBlock> warped_fungus : ChippedBlockTypes.WARPED_FUNGUS) {
-			ItemBlockRenderTypes.setRenderLayer(warped_fungus.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(warped_fungus.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<MushroomBlock> crimson_fungus : ChippedBlockTypes.CRIMSON_FUNGUS) {
-			ItemBlockRenderTypes.setRenderLayer(crimson_fungus.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(crimson_fungus.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<RootsBlock> warped_roots : ChippedBlockTypes.WARPED_ROOTS) {
-			ItemBlockRenderTypes.setRenderLayer(warped_roots.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(warped_roots.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<RootsBlock> crimson_roots : ChippedBlockTypes.CRIMSON_ROOTS) {
-			ItemBlockRenderTypes.setRenderLayer(crimson_roots.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(crimson_roots.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<NetherSproutsBlock> nether_sprouts : ChippedBlockTypes.NETHER_SPROUTS) {
-			ItemBlockRenderTypes.setRenderLayer(nether_sprouts.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(nether_sprouts.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<WaterlilyBlock> lily_pad : ChippedBlockTypes.LILY_PAD) {
-			ItemBlockRenderTypes.setRenderLayer(lily_pad.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(lily_pad.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<RedstoneTorchBlock> redstoneTorch : ChippedBlockTypes.REDSTONE_TORCHES) {
-			ItemBlockRenderTypes.setRenderLayer(redstoneTorch.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(redstoneTorch.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<RedstoneWallTorchBlock> redstoneWallTorch : ChippedBlocks.REDSTONE_WALL_TORCHES) {
-			ItemBlockRenderTypes.setRenderLayer(redstoneWallTorch.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(redstoneWallTorch.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<WebBlock> cobweb : ChippedBlockTypes.COBWEBS) {
-			ItemBlockRenderTypes.setRenderLayer(cobweb.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(cobweb.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<TorchBlock> torch : ChippedBlockTypes.TORCHES) {
-			ItemBlockRenderTypes.setRenderLayer(torch.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(torch.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<WallTorchBlock> wallTorch : ChippedBlocks.WALL_TORCHES) {
-			ItemBlockRenderTypes.setRenderLayer(wallTorch.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(wallTorch.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<Block> lantern : ChippedBlockTypes.LANTERNS) {
-			ItemBlockRenderTypes.setRenderLayer(lantern.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(lantern.get(), RenderType.cutout());
 		}
 
 		for (RegistryObject<Block> lantern : ChippedBlockTypes.SOUL_LANTERNS) {
-			ItemBlockRenderTypes.setRenderLayer(lantern.get(), cutoutRenderType);
+			ItemBlockRenderTypes.setRenderLayer(lantern.get(), RenderType.cutout());
 		}
 	}
 
